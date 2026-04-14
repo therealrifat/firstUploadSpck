@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Time Change Button</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f9;
+        }
+        #myButton {
+            padding: 15px 30px;
+            font-size: 20px;
+            cursor: pointer;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+        #myButton:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+
+    <button id="myButton" onclick="startTimer()">Click Me</button>
+
+    <script>
+        // বাটনটিকে ভেরিয়েবলে ধরা
+        const btn = document.getElementById('myButton');
+
+        function startTimer() {
+            // ক্লিক করার সাথে সাথে লেখা পরিবর্তন
+            btn.innerText = "Waiting for 3 seconds...";
+            btn.style.backgroundColor = "#e67e22"; // রং পরিবর্তন (ঐচ্ছিক)
+
+            // নির্দিষ্ট সময় (৩ সেকেন্ড) পর লেখা চেঞ্জ করার ফাংশন
+            setTimeout(function() {
+                changeText();
+            }, 3000); // ৩০০০ মিলিসেকেন্ড = ৩ সেকেন্ড
+        }
+
+        function changeText() {
+            btn.innerText = "Magic Happened! ✨";
+            btn.style.backgroundColor = "#27ae60";
+        }
+    </script>
+
+</body>
+</html>

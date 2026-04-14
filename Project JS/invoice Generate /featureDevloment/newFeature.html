@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+</head>
+
+<body>
+  <input type="number" name="" id="inputPrize" placeholder="" oninput="call()">
+  <br />
+  <input type="number" name="" id="inputShipping" oninput="call()">
+  <br />
+  <input type="number" name="" id="inputAdvance" oninput="call()">
+  <br />
+  <p>Product Prize: <span id="displayPrize">00</span></p>
+  <p>Shipping Charge <span id="displayShipping">00</span></p>
+  <p>Total <span id="displayTotal">0000</span></p>
+  <p>Advance <span id="displayAdvance"><0></0></span></p>
+  <p>Balance Due <span id="displayDue">00</span></p>
+  <!-- <table border="1px">
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Shipping Charge</th>
+        <th>Advance</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td id="tableData">Wgp</td>
+        <td id="shippingData">1pc</td>
+        <td id="tableData">0tk</td>
+      </tr>
+    </tbody>
+  </table> -->
+  <p id=""><span id="displayNumber">0</span> TK</p>
+  <script type="text/javascript" charset="utf-8">
+    function call() {
+     let productPrize = document.getElementById('inputPrize').value
+     let shipping= document.getElementById('inputShipping').value;
+      document.getElementById('displayPrize').innerText = productPrize;
+      document.getElementById('displayShipping').innerText = shipping;
+    }
+  </script>
+</body>
+
+</html>

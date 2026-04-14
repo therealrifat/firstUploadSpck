@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>প্রফেশনাল ইনভয়েস জেনারেটর</title>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <div class="form-section">
+        <h3>ইনভয়েস তথ্য দিন</h3>
+         <input type="Number" id="orderNumber" placeholder="Order Number" oninput="updateInvoice()">
+        <input type="text" id="clientName" placeholder="ক্লায়েন্টের নাম" oninput="updateInvoice()">
+        <input type="number" id="clientNumber" placeholder="Customer Number" oninput="updateInvoice()">
+         <input type="address" id="clientAddress" placeholder="ক্লায়েন্টের Address" oninput="updateInvoice()">
+        <input type="text" id="serviceDesc" placeholder="কাজের বিবরণ" oninput="updateInvoice()">
+        <input type="number" id="price" placeholder="মূল্য (টাকা)" oninput="updateInvoice()">
+        <input type="number" id="paid" placeholder="কত টাকা এডভ্যান্স করেছেন" oninput="updateInvoice()" required>
+        <button onclick="downloadPDF()">Download PDF</button>
+    </div>
+
+    <div class="preview-section" id="invoice-box">
+        <div id="invoice-template">
+            <div class="invoice-header">
+                <div>
+                
+                    <h2>HOIYO SHOP</h2>
+                        <div style="margin-top: 20px;">
+                            <p><strong> Customer Details: </strong></p>
+                            <p id="displayClientName">লোড হচ্ছে...</p>
+                            <p id="displayClientNumber">01719046223</p>
+                            <p id="displayClientAdress">Panchakaran, Khalifa Bari, Fulhata, Morelganj, Bagerhat</p>
+                        </div>
+                </div>
+                <div style="text-align: right;">
+                    <h2>INVOICE</h2>
+                    <h3 id="displayOrderNumber"> #444444</h3>
+                    <p>Invoice Date: <span id="dateText"></span></p>
+                   
+                </div>
+            </div>
+
+           
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th style="text-align: right;">QTY</th>
+                        <th style="text-align: right;">Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td id="displayService">সার্ভিসের নাম</td>
+                        <td style="text-align: right;">১</td>
+                        <td style="text-align: right;" id="displayPrice">0 টাকা</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="total-section">
+                <h4>Subtotal: <span id="displaySubtotal">0</span> টাকা</h4>
+                <h4>Shipping Charge: <span id="displayTotal">120</span> টাকা</h4>
+                <h4>Total : <span id="displayTotal">1970</span> টাকা</h4>
+                <h4>Advance Paid: <span advancePaid="advancePaid">200</span> টাকা</h4>
+                <h4>Balance Due: <span id="displayTotal">1770</span> টাকা</h4>
+            </div>
+            
+            <div style="margin-top: 50px; font-size: 12px; color: #777;">
+                <p>* এটি একটি কম্পিউটার জেনারেটেড ইনভয়েস।</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // তারিখ অটো সেট করা
+    document.getElementById('dateText').innerText = new Date().toLocaleDateString();
+
+    // ইনপুট থেকে ডাটা নিয়ে প্রিভিউ আপডেট করা
+    function updateInvoice() {
+        const name = document.getElementById('clientName').value || "ক্লায়েন্টের নাম";
+        const orderId = document.getElementById('orderNumber').value || "Order Number";
+        const number = document.getElementById('clientNumber').value || "Customer Number";
+        const csmAddress = document.getElementById('clientAddress').value || "Customer Address";
+        const service = document.getElementById('serviceDesc').value || "সার্ভিসের নাম";
+        const price = document.getElementById('price').value || "0";
+        const advancePay = document.getElementById('paid').value || "0";
+        
+        document.getElementById('displayClientName').innerText = name;
+        document.getElementById('displayOrderNumber').innerText = `#${orderId}`;
+        document.getElementById('displayClientNumber').innerText = number;
+        document.getElementById('displayClientAdress').innerText = csmAddress;
+        document.getElementById('displayService').innerText = service;
+        document.getElementById('displayPrice').innerText = price + " টাকা";
+        document.getElementById('displaySubtotal').innerText = price + " টাকা";
+        document.getElementById('advancePaid').innerText = advancePay;
+        
+    }
+
+    // পিডিএফ ডাউনলোড ফাংশন
+    function downloadPDF() {
+        const element = document.getElementById('invoice-template');
+        
+        // ফাইল ডাউনলোডের সময় ডিজাইন ঠিক রাখার অপশন
+        const opt = {
+            margin:       10,
+            filename:     `Invoice_Report.pdf`,
+            image:        { type: 'jpeg', quality: 0.98 },
+            html2canvas:  { scale: 2 },
+            jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+        };
+
+        // প্রসেস শুরু
+        html2pdf().set(opt).from(element).save();
+    }
+</script>
+
+</body>
+</html>

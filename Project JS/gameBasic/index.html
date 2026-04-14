@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>JS Mobile Game</title>
+    <style>
+        body { margin: 0; overflow: hidden; background: #2c3e50; font-family: sans-serif; }
+        canvas { display: block; background: #ecf0f1; margin: 0 auto; }
+        #ui { position: absolute; top: 10px; left: 10px; color: #2c3e50; font-size: 20px; font-weight: bold; pointer-events: none; }
+    </style>
+</head>
+<body>
+
+    <div id="ui">Score: <span id="score">0</span></div>
+    <canvas id="gameCanvas"></canvas>
+
+    <script>
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        const scoreElement = document.getElementById('score');
+
+        // মোবাইল স্ক্রিন অনুযায়ী ক্যানভাস সাইজ করা
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let score = 0;
+        let gameOver = false;
+
+        // বলের প্রোপার্টিজ
+        let ball = {
+            x: canvas.width / 2,
+            y: 30,
+            radius: 15,
+            dx: 4, // ডানে-বামে স্পিড
+            dy: 4  // উপরে-নিচে স্পিড
+        };
+
+        // প্যাডেলের প্রোপার্টিজ (ইউজার এটি কন্ট্রোল করবে)
+        let paddle = {
+            width: 120,
+            height: 15,
+            x: (canvas.width - 120) / 2
+        };
+
+        // টাচ কন্ট্রোল
+        window.addEventListener('touchmove', (e) => {
+            let touchX = e.touches[0].clientX;
+            paddle.x = touchX - paddle.width / 2;
+        });
+
+        function drawBall() {
+            ctx.beginPath();
+            ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
+            ctx.fillStyle = "#e74c3c";
+            ctx.fill();
+            ctx.closePath();
+        }
+
+        function drawPaddle() {
+            ctx.beginPath();
+            ctx.rect(paddle.x, canvas.height - 40, paddle.width, paddle.height);
+            ctx.fillStyle = "#3498db";
+            ctx.fill();
+            ctx.closePath();
+        }
+
+        function update() {
+            if (gameOver) return;
+
+            // বলের মুভমেন্ট
+            ball.x += ball.dx;
+            ball.y += ball.dy;
+
+            // দেয়ালের সাথে ধাক্কা লাগলে দিক পরিবর্তন
+            if (ball.x + ball.radius > canvas.width || ball.x - ball.radius < 0) {
+                ball.dx *= -1;
+            }
+            if (ball.y - ball.radius < 0) {
+                ball.dy *= -1;
+            }
+
+            // প্যাডেলের সাথে বলের ধাক্কা লাগলে
+            if (ball.y + ball.radius > canvas.height - 40) {
+                if (ball.x > paddle.x && ball.x < paddle.x + paddle.width) {
+                    ball.dy *= -1;
+                    score++;
+                    scoreElement.innerText = score;
+                    // গেম কঠিন করার জন্য স্পিড বাড়ানো
+                    ball.dy *= 1.05;
+                    ball.dx *= 1.05;
+                } else if (ball.y > canvas.height) {
+                    gameOver = true;
+                    alert("Game Over! Score: " + score);
+                    location.reload(); // গেম রিস্টার্ট
+                }
+            }
+        }
+
+        function gameLoop() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height); // স্ক্রিন পরিষ্কার করা
+            drawBall();
+            drawPaddle();
+            update();
+            requestAnimationFrame(gameLoop); // লুপ চালানো
+        }
+
+        gameLoop();
+    </script>
+</body>
+</html>

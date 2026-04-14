@@ -1,0 +1,21 @@
+.myButton {
+  background-color: darkred; /* Green background */
+  border: none; /* Remove default border */
+  color: white; /* White text */
+  padding: 15px 32px; /* Add space inside */
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer; /* Change cursor to a hand */
+  border-radius: 8px; /* Rounded corners */
+  transition: background-color 0.3s; /* Smooth transition for hover */
+  font-size: 24px;
+}
+#from label{
+  display: block;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-align: left;
+}
