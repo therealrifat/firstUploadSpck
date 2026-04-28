@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>মসজিদ কালেকশন লাইভ ড্যাশবোর্ড</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h2>মসজিদ ফান্ড ড্যাশবোর্ড</h2>
+        <p>লাইভ আপডেট (গুগল শিট থেকে)</p>
+    </div>
+
+    <div class="stats-container">
+        <div class="card">
+            <h3>বর্তমান হাতে জমা</h3>
+            <span class="amount" style="color: var(--primary)" id="currentHand">৳ ০</span>
+        </div>
+        <div class="card">
+            <h3>মোট কালেকশন</h3>
+            <span class="amount" style="color: var(--success)" id="totalCol">৳ ০</span>
+        </div>
+        <div class="card">
+            <h3>মসজিদে জমা (Pay-out)</h3>
+            <span class="amount" style="color: var(--warning)" id="totalOut">৳ ০</span>
+        </div>
+    </div>
+
+    <div class="search-box">
+        <input type="text" id="searchInput" onkeyup="searchName()" placeholder="আপনার নাম লিখে খুঁজুন...">
+    </div>
+
+    <div id="loading">ডাটা লোড হচ্ছে, দয়া করে অপেক্ষা করুন...</div>
+
+    <div class="table-wrapper" id="contentWrapper" style="display: none;">
+        <table id="donorTable">
+            <thead>
+                <tr>
+                    <th>নাম</th>
+                    <th>ধার্যকৃত বেতন</th>
+                    <th>জমা</th>
+                    <th>অবস্থা</th>
+                </tr>
+            </thead>
+            <tbody id="tableData">
+                </tbody>
+        </table>
+    </div>
+</div>
+
+<script src="app.js">
+
+</script>
+
+</body>
+</html>

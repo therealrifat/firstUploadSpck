@@ -1,0 +1,22 @@
+<div class="payment-card">
+    <h3>🕌 মসজিদ ফান্ডে অনুদান দিন</h3>
+    <p>নিচের যেকোনো নাম্বারে পেমেন্ট করে ফর্মটি পূরণ করুন:</p>
+    <ul class="mfs-numbers">
+        <li><strong>বিকাশ:</strong> 01719046223 (Personal)</li>
+        <li><strong>নগদ:</strong> 018XXXXXXXX (Personal)</li>
+    </ul>
+
+    <form id="paymentForm">
+        <input type="text" id="p_name" placeholder="আপনার নাম" required>
+        <input type="text" id="p_phone" placeholder="মোবাইল নম্বর" required>
+        <select id="p_method">
+            <option value="Bkash">বিকাশ (Bkash)</option>
+            <option value="Nagad">নগদ (Nagad)</option>
+            <option value="Rocket">রকেট (Rocket)</option>
+        </select>
+        <input type="number" id="p_amount" placeholder="টাকার পরিমাণ" required>
+        <input type="text" id="p_trx" placeholder="ট্রানজেকশন আইডি (TrxID)" required>
+        <button type="submit" id="submitBtn">তথ্য জমা দিন</button>
+    </form>
+    <div id="msg"></div>
+</div>

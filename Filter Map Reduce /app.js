@@ -83,3 +83,21 @@ const Stack = [
 let userStack = Stack.filter(sk => sk.foundation === 'PHP');
 
 console.log(userStack)
+
+const myNumber = numberArry
+.map(num => num+5)
+.map(num=> num*5)
+.filter(num => num >= 50)
+
+
+// console.log(myNumber)
+let intialValue = 1; 
+
+const jogFol = numberArr.reduce((acc,curValue,) => acc * curValue,intialValue)
+console.log(jogFol)
+
+
+
+
+
+

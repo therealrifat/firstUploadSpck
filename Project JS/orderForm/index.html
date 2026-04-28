@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOIYOSHOP ORDER FORM</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+<div class="container">
+    <h2>💸 অর্ডার করুন</h2>
+    <form id="orderForm">
+
+        <div class="input-pair">
+            <div class="form-group">
+                <label for="customerName">নাম *:</label>
+                <input type="text" id="customerName" name="customerName" placeholder="সম্পূর্ণ নাম" required>
+            </div>
+            <div class="form-group">
+                <label for="customerPhone">ফোন নম্বর *:</label>
+                <input type="tel" id="customerPhone" name="customerPhone" pattern="[0-9]+" placeholder="১১ ডিজিটের মোবাইল নম্বর" required>
+            </div>
+        </div>
+
+        <div class="input-pair">
+            <div class="form-group">
+                <label for="district">জেলা *:</label>
+                <input type="text" id="district" name="district" placeholder="যেমন: ঢাকা" required>
+            </div>
+            <div class="form-group">
+                <label for="area">থানা/উপজেলা *:</label>
+                <input type="text" id="area" name="area" placeholder="যেমন: মিরপুর" required>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="address">ডেলিভারি ঠিকানা (সম্পূর্ণ) *:</label>
+            <textarea id="address" name="address" rows="2" placeholder="বাড়ি নং, রোড নং, বিস্তারিত ঠিকানা" required></textarea>
+        </div>
+        
+        <hr style="border: 0; border-top: 1px solid #ddd; margin: 10px 0;">
+        
+    <table id="productTable">
+    <thead>
+        <tr>
+            <th>সিলেক্ট</th>
+            <th>পণ্যের নাম</th>
+            <th>মূল্য</th>
+        </tr>
+    </thead>
+    <tbody>
+        </tbody>
+    </table>
+<div id="totalDisplay">মোট মূল্য: ৳০</div>
+        <div class="input-pair">
+            <div class="form-group" style="flex: none;">
+                <label for="quantity">পরিমাণ:</label>
+                <div class="quantity-control">
+                    <button type="button" onclick="changeQuantity(-1)">-</button>
+                    <input type="number" id="quantity" name="quantity" min="1" value="1" required>
+                    <button type="button" onclick="changeQuantity(1)">+</button>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>ডেলিভারি চার্জ:</label>
+                <div class="radio-group">
+                    <label>
+                        <input type="radio" name="deliveryType" value="Outside_Dhaka" data-charge="120" checked required> 
+                        ঢাকা সিটির বাহিরে (৳১২০)
+                    </label>
+                    <label>
+                        <input type="radio" name="deliveryType" value="Dhaka_City" data-charge="60"> 
+                        ঢাকা সিটি (৳৬০)
+                    </label>
+                </div>
+                <div id="deliveryTimeDisplay"></div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="notes">বিশেষ নোট (ঐচ্ছিক):</label>
+            <textarea id="notes" name="notes" rows="2" placeholder="যেমন: রং/সাইজ উল্লেখ করুন অথবা কোনো বিশেষ নির্দেশনা"></textarea>
+        </div>
+        
+        <div class="button-group">
+            <button id="whatsappButton" type="button">
+                <i class="fa-brands fa-whatsapp"></i> অর্ডার মেসেজ পাঠান (WhatsApp)
+            </button>
+            <button id="messengerButton" type="button">
+                <i class="fa-brands fa-facebook-messenger"></i> অর্ডার মেসেজ পাঠান (Messenger)
+            </button>
+        </div>
+        
+    </form>
+<script src='app.js'></script>
+</div>
+</body>
+</html>
