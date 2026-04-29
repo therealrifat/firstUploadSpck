@@ -2,6 +2,8 @@ function Calculate() {
   const dateOfBirth = document.getElementById('dateOfBirth').value;
   const toDay = document.getElementById('Today').value;
   let outPut = document.getElementById('display');
+  let birthDetails = document.getElementById('details');
+  
   // console.log(dateOfBirth + " " + toDay)
    let arrToDay = toDay.split('-')
    let arryConvert = dateOfBirth.split('-')
@@ -33,19 +35,14 @@ function Calculate() {
    calDays =calDays + 30;
   }
   
-  
-outPut.innerText =`বয়স: ${calYears} বছর, ${calMonth} মাস, ${calDays} দিন`
-
-}
-
-
 let arrayNumber = Number(arryConvert[0])
-console.log(typeof(arrayNumber))
-let years = Number(arryConvert[0]);
-let months = (years*12)+ Number(arryConvert[1]);
-let days = (years * 365) + Number(arryConvert[1])*30+ Number(arryConvert[2]);
-let weeks = Math.floor(days / 7);
-let hours= days * 24;
-let minutes= hours * 60;
-(`তোমার বয়স ${months} মাস , ${weeks} সপ্তাহ, ${days} দিন, ${hours} ঘন্টা, ${minutes} মিনিট`)
 
+let months = (calYears*12)+ calMonth;
+let days = (calYears*365)+ (calMonth*30) + calDays;
+let weeks = Math.floor(days / 7);
+let hours = days * 24;
+let minutes = hours * 60; 
+console.log(days)
+outPut.innerText =`বয়স: ${calYears} বছর, ${calMonth} মাস, ${calDays} দিন`
+birthDetails.innerText=`তোমার বয়স ${months} মাস , ${weeks} সপ্তাহ, ${days} দিন, ${hours} ঘন্টা, ${minutes} মিনিট`
+}
