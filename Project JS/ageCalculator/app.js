@@ -44,5 +44,5 @@ let hours = days * 24;
 let minutes = hours * 60; 
 console.log(days)
 outPut.innerText =`বয়স: ${calYears} বছর, ${calMonth} মাস, ${calDays} দিন`
-birthDetails.innerText=`তোমার বয়স ${months} মাস , ${weeks} সপ্তাহ, ${days} দিন, ${hours} ঘন্টা, ${minutes} মিনিট`
+birthDetails.innerText=` ${months} মাস , ${weeks} সপ্তাহ, ${days} দিন, ${hours} ঘন্টা, ${minutes} মিনিট`
 }
